@@ -1,0 +1,7 @@
+{{- $class := .class | default "h-8 w-auto" -}}
+{{- $file := .file | default "static/images/logo.svg" -}}
+{{- $svg := readFile $file -}}
+{{- $svg = replace $svg "<svg " (printf `<svg class="%s" role="img" aria-label="The Agency" ` $class) -}}
+<span class="inline-block text-slate-900 dark:text-white">
+  {{- $svg | safeHTML -}}
+</span>

@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@plugin "@tailwindcss/typography";
+@source "../../hugo_stats.json";
+
+@theme {
+  /* Primary accent — the cyan from the logo badge (#22d3ee) */
+  --color-accent-300: #67e8f9;
+  --color-accent-400: #22d3ee;
+  --color-accent-500: #06b6d4;
+  --color-accent-600: #0891b2;
+  --color-accent-700: #0e7490;
+  --color-accent-800: #155e75;
+
+  /* Secondary — the blue from the logo (#1e40af) */
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1e40af;
+
+  /* Surfaces — the near-black navy from the logo (#011327).
+     Dark mode should read as a dim operations room, not pure black. */
+  --color-navy-600: #1e4b73;
+  --color-navy-700: #163a5f;
+  --color-navy-800: #0a2540;
+  --color-navy-900: #041c33;
+  --color-navy-950: #011327;
+}
+
+/* Inline code styling (not inside pre/code blocks) */
+.prose :where(code):not(:where(pre code, [class~=not-prose] *)) {
+  @apply bg-slate-100 text-slate-800 px-1.5 py-0.5 rounded text-sm;
+}
+
+:is(.dark) .prose :where(code):not(:where(pre code, [class~=not-prose] *)) {
+  @apply bg-navy-800 text-slate-200;
+}
+
+/* Remove backtick pseudo-elements from inline code */
+.prose :where(code):not(:where([class~=not-prose],[class~=not-prose] *))::before,
+.prose :where(code):not(:where([class~=not-prose],[class~=not-prose] *))::after {
+  content: none;
+}
+
+/* Faint grid backdrop used behind hero sections — the "operations room" texture */
+.grid-backdrop {
+  background-image:
+    linear-gradient(to right, rgba(2, 19, 39, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(2, 19, 39, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 100%);
+}
+
+:is(.dark) .grid-backdrop {
+  background-image:
+    linear-gradient(to right, rgba(103, 232, 249, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(103, 232, 249, 0.08) 1px, transparent 1px);
+}

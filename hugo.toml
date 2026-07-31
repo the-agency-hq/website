@@ -1,0 +1,44 @@
+baseURL = "https://theagencyhq.org/"
+locale = "en-us"
+title = "The Agency"
+
+[build]
+  [build.buildStats]
+    enable = true
+    disableClasses = false
+    disableIDs = false
+    disableTags = false
+
+[[build.cachebusters]]
+  source = 'assets/notwatching/hugo_stats\.json'
+  target = 'css'
+
+[[build.cachebusters]]
+  source = '(postcss|tailwind)\.config\.js'
+  target = 'css'
+
+[[module.mounts]]
+  source = 'assets'
+  target = 'assets'
+
+[[module.mounts]]
+  disableWatch = true
+  source = 'hugo_stats.json'
+  target = 'assets/notwatching/hugo_stats.json'
+
+# Brochure site — no tags or categories.
+[taxonomies]
+
+[params]
+  description = "Command and control for your AI agents. One source of truth for the rules, skills, and standards every agent follows."
+  github = "https://github.com/the-agency-hq"
+
+[[menus.main]]
+  name = "How it works"
+  pageRef = "/how-it-works"
+  weight = 10
+
+[[menus.main]]
+  name = "Concepts"
+  pageRef = "/concepts"
+  weight = 20

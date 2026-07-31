@@ -1,0 +1,305 @@
+{{ define "main" }}
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-slate-200 dark:border-navy-800">
+    <div class="grid-backdrop pointer-events-none absolute inset-0" aria-hidden="true"></div>
+    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 text-center">
+      <p class="text-xs font-semibold uppercase tracking-widest text-accent-700 dark:text-accent-300">The chain of command</p>
+      <h1 class="mt-4 text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">{{ .Title }}</h1>
+      <p class="mt-6 text-lg text-slate-600 dark:text-slate-400">
+        Briefs are authored once at The Agency, carried by a Handler on every developer&rsquo;s machine,
+        and delivered to the Locations where your Agents run their Missions.
+      </p>
+    </div>
+  </section>
+
+  {{ with .Content }}
+    <section class="border-b border-slate-200 dark:border-navy-800">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="prose dark:prose-invert prose-slate max-w-none prose-a:text-accent-700 dark:prose-a:text-accent-400">{{ . }}</div>
+      </div>
+    </section>
+  {{ end }}
+
+  <!-- The flow -->
+  <section class="border-b border-slate-200 dark:border-navy-800 bg-slate-50 dark:bg-navy-900">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white text-center">The flow</h2>
+
+      <div class="mt-12 flex flex-col lg:flex-row items-stretch justify-center gap-4">
+        <!-- The Agency -->
+        <div class="flex-1 rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6 text-center">
+          <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+            {{ partial "icon.html" (dict "name" "agency" "class" "h-6 w-6") }}
+          </span>
+          <h3 class="mt-4 text-lg font-semibold text-slate-900 dark:text-white">The Agency</h3>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Stores, versions, and translates every Brief.</p>
+        </div>
+
+        <div class="flex items-center justify-center text-slate-300 dark:text-navy-600" aria-hidden="true">
+          <svg class="h-6 w-6 rotate-90 lg:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </div>
+
+        <!-- Handler -->
+        <div class="flex-1 rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6 text-center">
+          <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+            {{ partial "icon.html" (dict "name" "handler" "class" "h-6 w-6") }}
+          </span>
+          <h3 class="mt-4 text-lg font-semibold text-slate-900 dark:text-white">Handler</h3>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">One per developer machine. Receives Briefs, then delivers them.</p>
+        </div>
+
+        <div class="flex items-center justify-center text-slate-300 dark:text-navy-600" aria-hidden="true">
+          <svg class="h-6 w-6 rotate-90 lg:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </div>
+
+        <!-- Locations -->
+        <div class="flex-1 rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6 text-center">
+          <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+            {{ partial "icon.html" (dict "name" "folder" "class" "h-6 w-6") }}
+          </span>
+          <h3 class="mt-4 text-lg font-semibold text-slate-900 dark:text-white">Locations</h3>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Project directories where Agents pick up their Briefs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Agency -->
+  <section class="border-b border-slate-200 dark:border-navy-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <div class="flex items-center gap-4">
+        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+          {{ partial "icon.html" (dict "name" "agency" "class" "h-6 w-6") }}
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">The Agency</h2>
+      </div>
+      <p class="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
+        The Agency is headquarters: the central store and manager of Briefs. It takes what your
+        Organization authors, turns it into a Brief, versions it every time something changes, and
+        makes it available to the Handlers in the field.
+      </p>
+      <p class="mt-4 text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
+        It is deliberately incurious. The Agency knows nothing about your Locations, your Agents, or
+        the Missions they run &mdash; that is the Handler&rsquo;s business. Headquarters publishes orders;
+        it does not follow anyone around.
+      </p>
+    </div>
+  </section>
+
+  <!-- Handler -->
+  <section class="border-b border-slate-200 dark:border-navy-800 bg-slate-50 dark:bg-navy-900">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <div class="flex items-center gap-4">
+        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+          {{ partial "icon.html" (dict "name" "handler" "class" "h-6 w-6") }}
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">The Handler</h2>
+      </div>
+      <p class="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
+        Every developer runs one Handler on their machine. It is the conduit between The Agency and
+        the Agents in the field, and it runs on a schedule so nobody has to remember to sync
+        anything. A single Handler can work for more than one Organization at a time.
+      </p>
+
+      <h3 class="mt-10 text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">Two jobs</h3>
+      <div class="mt-4 grid gap-6 sm:grid-cols-2">
+        <div class="rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+            {{ partial "icon.html" (dict "name" "download" "class" "h-5 w-5") }}
+          </span>
+          <h4 class="mt-4 text-base font-semibold text-slate-900 dark:text-white">Receive new Briefs</h4>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+            Check in with The Agency and pick up anything new for the Organizations this developer
+            belongs to.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+            {{ partial "icon.html" (dict "name" "upload" "class" "h-5 w-5") }}
+          </span>
+          <h4 class="mt-4 text-base font-semibold text-slate-900 dark:text-white">Deliver to Locations</h4>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+            Find every Location on the machine and copy the latest Brief out to each one, scoped to
+            what that Location actually needs.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-6 grid gap-6 sm:grid-cols-2">
+        <div class="flex items-start gap-4 rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
+          <span class="mt-0.5 shrink-0 text-accent-700 dark:text-accent-400">
+            {{ partial "icon.html" (dict "name" "shield" "class" "h-6 w-6") }}
+          </span>
+          <div>
+            <h4 class="text-base font-semibold text-slate-900 dark:text-white">Works when headquarters doesn&rsquo;t</h4>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+              The Handler keeps its own copy of every Brief it has received. If The Agency is
+              unreachable, it serves the stored copy and your Agents never notice.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4 rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
+          <span class="mt-0.5 shrink-0 text-accent-700 dark:text-accent-400">
+            {{ partial "icon.html" (dict "name" "refresh" "class" "h-6 w-6") }}
+          </span>
+          <div>
+            <h4 class="text-base font-semibold text-slate-900 dark:text-white">Repairs what gets mangled</h4>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+              If an Agent or a developer edits or deletes part of a Brief, the Handler restores it
+              from the original on the next pass. The Brief itself never drifts.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations -->
+  <section class="border-b border-slate-200 dark:border-navy-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <div class="flex items-center gap-4">
+        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+          {{ partial "icon.html" (dict "name" "location" "class" "h-6 w-6") }}
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Locations</h2>
+      </div>
+      <p class="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
+        A Location is a directory on a developer&rsquo;s machine where an Agent runs a Mission &mdash; in
+        practice, a project. You mark a directory as a Location with a small marker file that says
+        which Organization it belongs to and which Mission Types apply there. The Handler sweeps the
+        machine, finds the markers, and delivers.
+      </p>
+      <div class="mt-8 rounded-2xl border border-accent-500/20 dark:border-accent-400/20 bg-accent-500/5 dark:bg-accent-400/10 p-6 sm:p-8">
+        <div class="flex items-start gap-4">
+          <span class="mt-0.5 shrink-0 text-accent-700 dark:text-accent-400">
+            {{ partial "icon.html" (dict "name" "branch" "class" "h-6 w-6") }}
+          </span>
+          <div>
+            <h3 class="text-base font-semibold text-slate-900 dark:text-white">The marker is source-controlled</h3>
+            <p class="mt-2 text-slate-600 dark:text-slate-400">
+              Commit it once and the Location is set up for everyone. A new developer clones the
+              repository, their Handler notices, and their Agents are briefed with zero effort on
+              their part.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Types -->
+  <section class="border-b border-slate-200 dark:border-navy-800 bg-slate-50 dark:bg-navy-900">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <div class="flex items-center gap-4">
+        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+          {{ partial "icon.html" (dict "name" "filter" "class" "h-6 w-6") }}
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Mission Types</h2>
+      </div>
+      <p class="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
+        Not everything in a Brief applies everywhere. Mission Types are simple tags &mdash; think
+        <span class="font-medium text-slate-800 dark:text-slate-200">Web</span>,
+        <span class="font-medium text-slate-800 dark:text-slate-200">Library</span>,
+        <span class="font-medium text-slate-800 dark:text-slate-200">Framework</span> &mdash; that your
+        Organization puts on the files it authors. A Location declares the Mission Types it runs, and
+        only the matching material is delivered there. A Library project does not need your Web
+        rules, so it never sees them.
+      </p>
+      <div class="mt-8 grid gap-6 sm:grid-cols-3">
+        <div class="rounded-xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
+          <p class="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">Location</p>
+          <p class="mt-2 font-semibold text-slate-900 dark:text-white">Web app</p>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Receives the shared material plus everything tagged <span class="font-medium text-slate-800 dark:text-slate-200">Web</span>.</p>
+        </div>
+        <div class="rounded-xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
+          <p class="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">Location</p>
+          <p class="mt-2 font-semibold text-slate-900 dark:text-white">Shared library</p>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Receives the shared material plus everything tagged <span class="font-medium text-slate-800 dark:text-slate-200">Library</span>.</p>
+        </div>
+        <div class="rounded-xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
+          <p class="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">Location</p>
+          <p class="mt-2 font-semibold text-slate-900 dark:text-white">No types declared</p>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Accepts everything. Leave it blank when a Location should get the whole Brief.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Organizations and Teams -->
+  <section class="border-b border-slate-200 dark:border-navy-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <div class="flex items-center gap-4">
+        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+          {{ partial "icon.html" (dict "name" "team" "class" "h-6 w-6") }}
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Organizations and Teams</h2>
+      </div>
+      <p class="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
+        An Organization is the entity that authors Briefs and controls how they are distributed.
+        Admins decide what goes into a Brief and who receives it. Developers can be grouped into
+        Teams &mdash; the data team, the API team &mdash; and a developer can belong to more than one.
+      </p>
+      <p class="mt-4 text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
+        Access is not permanent. Remove someone from the Organization and the change takes effect on
+        their next sync &mdash; their Handler stops receiving your Briefs.
+      </p>
+    </div>
+  </section>
+
+  <!-- Authoring -->
+  <section class="border-b border-slate-200 dark:border-navy-800 bg-slate-50 dark:bg-navy-900">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <div class="flex items-center gap-4">
+        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+          {{ partial "icon.html" (dict "name" "brief" "class" "h-6 w-6") }}
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Authoring a Brief</h2>
+      </div>
+      <p class="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
+        You write your skills, rules, and agent definitions the way you already write everything
+        else &mdash; in a Git repository, reviewed and versioned. Point The Agency at that repository and
+        it takes over from there.
+      </p>
+
+      <ol class="mt-10 space-y-6">
+        <li class="flex gap-5">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-700 dark:bg-accent-400 text-sm font-bold text-white dark:text-navy-950">1</span>
+          <div>
+            <h3 class="text-base font-semibold text-slate-900 dark:text-white">Point at a repository</h3>
+            <p class="mt-1 text-slate-600 dark:text-slate-400">Connect a GitHub repository of skills, rules, and agent definitions. When it changes, The Agency picks the change up.</p>
+          </div>
+        </li>
+        <li class="flex gap-5">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-700 dark:bg-accent-400 text-sm font-bold text-white dark:text-navy-950">2</span>
+          <div>
+            <h3 class="text-base font-semibold text-slate-900 dark:text-white">The Agency builds the Brief</h3>
+            <p class="mt-1 text-slate-600 dark:text-slate-400">Your source is assembled into a single Brief and given a new version. Nothing downstream has to be told.</p>
+          </div>
+        </li>
+        <li class="flex gap-5">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-700 dark:bg-accent-400 text-sm font-bold text-white dark:text-navy-950">3</span>
+          <div>
+            <h3 class="text-base font-semibold text-slate-900 dark:text-white">Translated for every agent</h3>
+            <p class="mt-1 text-slate-600 dark:text-slate-400">The same material is laid out the way each agent expects to find it &mdash; <code class="rounded bg-slate-200/70 dark:bg-navy-950/60 px-1.5 py-0.5 text-sm">.claude/</code>, <code class="rounded bg-slate-200/70 dark:bg-navy-950/60 px-1.5 py-0.5 text-sm">.codex/</code>, and so on &mdash; with per-agent escape hatches for the times you need something specific.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 rounded-2xl border border-accent-500/20 dark:border-accent-400/20 bg-accent-500/5 dark:bg-accent-400/10 p-8">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-semibold text-slate-900 dark:text-white">Still learning the language?</h2>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">Agents, Handlers, Briefs, Locations, Missions &mdash; the whole lexicon in one place.</p>
+        </div>
+        <a href="/concepts/" class="inline-flex items-center justify-center gap-2 shrink-0 px-6 py-3 bg-accent-700 hover:bg-accent-800 dark:bg-accent-500 dark:hover:bg-accent-400 dark:text-navy-950 text-white font-medium rounded-lg transition-colors">
+          Read the concepts
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+{{ end }}

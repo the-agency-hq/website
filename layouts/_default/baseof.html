@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  {{ $canonical := strings.TrimSuffix ".html" .Permalink }}
+  <link rel="canonical" href="{{ $canonical }}">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  {{ $ogImage := "/images/og/default.png" }}
+  {{ with .Params.og_image }}{{ $ogImage = . }}{{ end }}
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta property="og:image" content="{{ $ogImage | absURL }}">
+  <meta property="og:url" content="{{ $canonical }}">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+  <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta name="twitter:image" content="{{ $ogImage | absURL }}">
+  <script>
+    (function() {
+      var pref = localStorage.getItem('theme');
+      if (pref === 'dark' || (!pref && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+  {{ with (templates.Defer (dict "key" "global")) }}
+    {{ partial "css.html" . }}
+  {{ end }}
+</head>
+<body class="bg-white text-slate-900 dark:bg-navy-950 dark:text-slate-100 transition-colors duration-200">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-3 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-accent-800 focus:text-white">Skip to content</a>
+  {{ partial "nav.html" . }}
+  <main id="main">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+  <script>
+  (function() {
+    function getStoredTheme() {
+      return localStorage.getItem('theme');
+    }
+
+    function applyTheme(pref) {
+      var isDark = pref === 'dark' || (!pref && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.classList.toggle('dark', isDark);
+    }
+
+    function updateIcons(pref) {
+      document.querySelectorAll('.theme-icon-light, .theme-icon-dark, .theme-icon-system').forEach(function(el) {
+        el.classList.add('hidden');
+      });
+      var cls = pref === 'light' ? '.theme-icon-light' : pref === 'dark' ? '.theme-icon-dark' : '.theme-icon-system';
+      document.querySelectorAll(cls).forEach(function(el) {
+        el.classList.remove('hidden');
+      });
+    }
+
+    function init() {
+      var pref = getStoredTheme();
+      applyTheme(pref);
+      updateIcons(pref);
+    }
+
+    document.querySelectorAll('.theme-toggle').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var current = getStoredTheme();
+        var next;
+        if (current === 'light') next = 'dark';
+        else if (current === 'dark') next = null;
+        else next = 'light';
+
+        if (next) {
+          localStorage.setItem('theme', next);
+        } else {
+          localStorage.removeItem('theme');
+        }
+        applyTheme(next);
+        updateIcons(next);
+      });
+    });
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+      if (!getStoredTheme()) applyTheme(null);
+    });
+
+    init();
+  })();
+  </script>
+</body>
+</html>

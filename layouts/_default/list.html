@@ -1,0 +1,22 @@
+{{ define "main" }}
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-8">{{ .Title }}</h1>
+    {{ if .Content }}
+      <div class="prose dark:prose-invert prose-slate max-w-3xl mb-12 prose-a:text-accent-700 dark:prose-a:text-accent-400">
+        {{ .Content }}
+      </div>
+    {{ end }}
+    {{ if .Pages }}
+      <ul class="space-y-4 max-w-3xl">
+        {{ range .Pages }}
+          <li>
+            <a href="{{ .RelPermalink }}" class="group block p-4 border border-slate-200 dark:border-navy-700 rounded-lg hover:border-accent-500 dark:hover:border-accent-400 transition-colors">
+              <h2 class="text-lg font-semibold text-slate-900 dark:text-white group-hover:text-accent-700 dark:group-hover:text-accent-400 transition-colors">{{ .Title }}</h2>
+              {{ with .Description }}<p class="mt-1 text-sm text-slate-500 dark:text-slate-400">{{ . }}</p>{{ end }}
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    {{ end }}
+  </section>
+{{ end }}
