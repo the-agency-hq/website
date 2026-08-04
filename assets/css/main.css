@@ -3,29 +3,9 @@
 @plugin "@tailwindcss/typography";
 @source "../../hugo_stats.json";
 
-@theme {
-  /* Primary accent — the cyan from the logo badge (#22d3ee) */
-  --color-accent-300: #67e8f9;
-  --color-accent-400: #22d3ee;
-  --color-accent-500: #06b6d4;
-  --color-accent-600: #0891b2;
-  --color-accent-700: #0e7490;
-  --color-accent-800: #155e75;
-
-  /* Secondary — the blue from the logo (#1e40af) */
-  --color-brand-400: #60a5fa;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb;
-  --color-brand-700: #1e40af;
-
-  /* Surfaces — the near-black navy from the logo (#011327).
-     Dark mode should read as a dim operations room, not pure black. */
-  --color-navy-600: #1e4b73;
-  --color-navy-700: #163a5f;
-  --color-navy-800: #0a2540;
-  --color-navy-900: #041c33;
-  --color-navy-950: #011327;
-}
+/* No custom palette. The logo is drawn in stock Tailwind colours, so the site
+   uses them directly: cyan-* for the accent, blue-800 for the logo's blue,
+   slate-* for surfaces. */
 
 /* Inline code styling (not inside pre/code blocks) */
 .prose :where(code):not(:where(pre code, [class~=not-prose] *)) {
@@ -33,7 +13,7 @@
 }
 
 :is(.dark) .prose :where(code):not(:where(pre code, [class~=not-prose] *)) {
-  @apply bg-navy-800 text-slate-200;
+  @apply bg-slate-800 text-slate-200;
 }
 
 /* Remove backtick pseudo-elements from inline code */
@@ -42,17 +22,77 @@
   content: none;
 }
 
+/* ─── Brand motifs borrowed from the logo badge ─────────────────────────── */
+
+/* Pointy-top hexagon — the silhouette of the badge the spy sits inside */
+.hex {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* Honeycomb lattice — the same texture used on the social cards */
+.hex-lattice {
+  background-image: url('/images/hex-lattice-light.svg');
+  background-size: 41.57px 72px;
+  opacity: 0.06;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 30%, transparent 100%);
+}
+
+:is(.dark) .hex-lattice {
+  background-image: url('/images/hex-lattice-dark.svg');
+  opacity: 0.1;
+}
+
+/* Dossier label — the monospace section markers */
+.dossier-label {
+  @apply font-mono text-xs font-semibold uppercase tracking-[0.2em] text-cyan-700;
+}
+
+:is(.dark) .dossier-label {
+  @apply text-cyan-400;
+}
+
+/* Signal travelling down the chain of command. Colour comes from a text-* utility. */
+.flow-x {
+  background-image: repeating-linear-gradient(to right, currentColor 0 6px, transparent 6px 14px);
+  animation: flow-x 1.1s linear infinite;
+}
+
+.flow-y {
+  background-image: repeating-linear-gradient(to bottom, currentColor 0 6px, transparent 6px 14px);
+  animation: flow-y 1.1s linear infinite;
+}
+
+@keyframes flow-x {
+  to {
+    background-position: 14px 0;
+  }
+}
+
+@keyframes flow-y {
+  to {
+    background-position: 0 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-x,
+  .flow-y {
+    animation: none;
+  }
+}
+
 /* Faint grid backdrop used behind hero sections — the "operations room" texture */
 .grid-backdrop {
+  --grid-line: color-mix(in srgb, var(--color-slate-950) 6%, transparent);
   background-image:
-    linear-gradient(to right, rgba(2, 19, 39, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(2, 19, 39, 0.06) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 100%);
 }
 
 :is(.dark) .grid-backdrop {
-  background-image:
-    linear-gradient(to right, rgba(103, 232, 249, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(103, 232, 249, 0.08) 1px, transparent 1px);
+  --grid-line: color-mix(in srgb, var(--color-cyan-300) 8%, transparent);
 }

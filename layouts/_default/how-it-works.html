@@ -1,9 +1,16 @@
 {{ define "main" }}
+  {{ $onWhite := "bg-white dark:bg-slate-950" }}
+  {{ $onTint := "bg-slate-50 dark:bg-slate-900" }}
+  {{ $onCard := "bg-white dark:bg-slate-800" }}
+
   <!-- Hero -->
-  <section class="relative overflow-hidden border-b border-slate-200 dark:border-navy-800">
-    <div class="grid-backdrop pointer-events-none absolute inset-0" aria-hidden="true"></div>
+  <section class="relative overflow-hidden border-b border-slate-200 dark:border-slate-800">
+    <div class="hex-lattice pointer-events-none absolute inset-0" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute -right-20 top-1/2 hidden -translate-y-1/2 opacity-[0.07] lg:block" aria-hidden="true">
+      {{ partial "logo.html" (dict "class" "h-96 w-auto" "file" "static/images/logo-mark.svg") }}
+    </div>
     <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 text-center">
-      <p class="text-xs font-semibold uppercase tracking-widest text-accent-700 dark:text-accent-300">The chain of command</p>
+      <p class="dossier-label">The chain of command</p>
       <h1 class="mt-4 text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">{{ .Title }}</h1>
       <p class="mt-6 text-lg text-slate-600 dark:text-slate-400">
         Briefs are authored once at The Agency, carried by a Handler on every developer&rsquo;s machine,
@@ -13,65 +20,65 @@
   </section>
 
   {{ with .Content }}
-    <section class="border-b border-slate-200 dark:border-navy-800">
+    <section class="border-b border-slate-200 dark:border-slate-800">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="prose dark:prose-invert prose-slate max-w-none prose-a:text-accent-700 dark:prose-a:text-accent-400">{{ . }}</div>
+        <div class="prose dark:prose-invert prose-slate max-w-none prose-a:text-cyan-700 dark:prose-a:text-cyan-400">{{ . }}</div>
       </div>
     </section>
   {{ end }}
 
   <!-- The flow -->
-  <section class="border-b border-slate-200 dark:border-navy-800 bg-slate-50 dark:bg-navy-900">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-      <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white text-center">The flow</h2>
+  <section class="relative overflow-hidden border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
+    <div class="hex-lattice pointer-events-none absolute inset-0" aria-hidden="true"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <div class="text-center">
+        <p class="dossier-label">Route of a Brief</p>
+        <h2 class="mt-3 text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">The flow</h2>
+      </div>
 
-      <div class="mt-12 flex flex-col lg:flex-row items-stretch justify-center gap-4">
-        <!-- The Agency -->
-        <div class="flex-1 rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6 text-center">
-          <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
-            {{ partial "icon.html" (dict "name" "agency" "class" "h-6 w-6") }}
-          </span>
-          <h3 class="mt-4 text-lg font-semibold text-slate-900 dark:text-white">The Agency</h3>
-          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Stores, versions, and translates every Brief.</p>
-        </div>
-
-        <div class="flex items-center justify-center text-slate-300 dark:text-navy-600" aria-hidden="true">
-          <svg class="h-6 w-6 rotate-90 lg:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </div>
-
-        <!-- Handler -->
-        <div class="flex-1 rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6 text-center">
-          <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
-            {{ partial "icon.html" (dict "name" "handler" "class" "h-6 w-6") }}
-          </span>
-          <h3 class="mt-4 text-lg font-semibold text-slate-900 dark:text-white">Handler</h3>
-          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">One per developer machine. Receives Briefs, then delivers them.</p>
-        </div>
-
-        <div class="flex items-center justify-center text-slate-300 dark:text-navy-600" aria-hidden="true">
-          <svg class="h-6 w-6 rotate-90 lg:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </div>
-
-        <!-- Locations -->
-        <div class="flex-1 rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6 text-center">
-          <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
-            {{ partial "icon.html" (dict "name" "folder" "class" "h-6 w-6") }}
-          </span>
-          <h3 class="mt-4 text-lg font-semibold text-slate-900 dark:text-white">Locations</h3>
-          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Project directories where Agents pick up their Briefs.</p>
-        </div>
+      <div class="mt-14 flex flex-col items-center lg:flex-row lg:items-stretch">
+        {{ range $i, $step := slice
+          (dict "icon" "agency"  "title" "The Agency" "tag" "Headquarters" "body" "Stores, versions, and translates every Brief.")
+          (dict "icon" "handler" "title" "Handler"    "tag" "In the field" "body" "One per developer machine. Receives Briefs, then delivers them.")
+          (dict "icon" "folder"  "title" "Locations"  "tag" "On the ground" "body" "Project directories where Agents pick up their Briefs.")
+        }}
+          {{ if gt $i 0 }}
+            <!-- connector: the signal travelling down the chain -->
+            <div class="flex flex-col items-center text-cyan-600/70 dark:text-cyan-400/60 lg:hidden" aria-hidden="true">
+              <span class="flow-y h-12 w-0.5"></span>
+              <svg class="-mt-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7"/></svg>
+            </div>
+            <div class="mx-2 hidden shrink-0 items-center self-center text-cyan-600/70 dark:text-cyan-400/60 lg:flex" aria-hidden="true">
+              <span class="flow-x h-0.5 w-16 xl:w-24"></span>
+              <svg class="-ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7"/></svg>
+            </div>
+          {{ end }}
+          <div class="relative w-full max-w-sm lg:w-auto lg:max-w-none lg:flex-1">
+            <div class="h-full rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6 text-center">
+              <div class="flex justify-center">
+                {{ partial "hex-badge.html" (dict "name" $step.icon "size" "h-16 w-16" "icon" "h-7 w-7" "surface" $onCard) }}
+              </div>
+              <p class="mt-4 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                {{ printf "%02d" (add $i 1) }} &middot; {{ $step.tag }}
+              </p>
+              <h3 class="mt-1 text-lg font-semibold text-slate-900 dark:text-white">{{ $step.title }}</h3>
+              <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">{{ $step.body }}</p>
+            </div>
+          </div>
+        {{ end }}
       </div>
     </div>
   </section>
 
   <!-- The Agency -->
-  <section class="border-b border-slate-200 dark:border-navy-800">
+  <section class="border-b border-slate-200 dark:border-slate-800">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
       <div class="flex items-center gap-4">
-        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
-          {{ partial "icon.html" (dict "name" "agency" "class" "h-6 w-6") }}
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">The Agency</h2>
+        {{ partial "hex-badge.html" (dict "name" "agency" "size" "h-14 w-14" "icon" "h-6 w-6" "surface" $onWhite) }}
+        <div>
+          <p class="dossier-label">File 01 &middot; Headquarters</p>
+          <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">The Agency</h2>
+        </div>
       </div>
       <p class="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
         The Agency is headquarters: the central store and manager of Briefs. It takes what your
@@ -87,13 +94,14 @@
   </section>
 
   <!-- Handler -->
-  <section class="border-b border-slate-200 dark:border-navy-800 bg-slate-50 dark:bg-navy-900">
+  <section class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
       <div class="flex items-center gap-4">
-        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
-          {{ partial "icon.html" (dict "name" "handler" "class" "h-6 w-6") }}
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">The Handler</h2>
+        {{ partial "hex-badge.html" (dict "name" "handler" "size" "h-14 w-14" "icon" "h-6 w-6" "surface" $onTint) }}
+        <div>
+          <p class="dossier-label">File 02 &middot; In the field</p>
+          <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">The Handler</h2>
+        </div>
       </div>
       <p class="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
         Every developer runs one Handler on their machine. It is the conduit between The Agency and
@@ -101,67 +109,35 @@
         anything. A single Handler can work for more than one Organization at a time.
       </p>
 
-      <h3 class="mt-10 text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">Two jobs</h3>
+      <h3 class="mt-10 dossier-label">Standing orders</h3>
       <div class="mt-4 grid gap-6 sm:grid-cols-2">
-        <div class="rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
-          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
-            {{ partial "icon.html" (dict "name" "download" "class" "h-5 w-5") }}
-          </span>
-          <h4 class="mt-4 text-base font-semibold text-slate-900 dark:text-white">Receive new Briefs</h4>
-          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
-            Check in with The Agency and pick up anything new for the Organizations this developer
-            belongs to.
-          </p>
-        </div>
-        <div class="rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
-          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
-            {{ partial "icon.html" (dict "name" "upload" "class" "h-5 w-5") }}
-          </span>
-          <h4 class="mt-4 text-base font-semibold text-slate-900 dark:text-white">Deliver to Locations</h4>
-          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
-            Find every Location on the machine and copy the latest Brief out to each one, scoped to
-            what that Location actually needs.
-          </p>
-        </div>
-      </div>
-
-      <div class="mt-6 grid gap-6 sm:grid-cols-2">
-        <div class="flex items-start gap-4 rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
-          <span class="mt-0.5 shrink-0 text-accent-700 dark:text-accent-400">
-            {{ partial "icon.html" (dict "name" "shield" "class" "h-6 w-6") }}
-          </span>
-          <div>
-            <h4 class="text-base font-semibold text-slate-900 dark:text-white">Works when headquarters doesn&rsquo;t</h4>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
-              The Handler keeps its own copy of every Brief it has received. If The Agency is
-              unreachable, it serves the stored copy and your Agents never notice.
-            </p>
+        {{ range slice
+          (dict "icon" "download" "title" "Receive new Briefs" "body" "Check in with The Agency and pick up anything new for the Organizations this developer belongs to.")
+          (dict "icon" "upload"   "title" "Deliver to Locations" "body" "Find every Location on the machine and copy the latest Brief out to each one, scoped to what that Location actually needs.")
+          (dict "icon" "shield"   "title" "Works when headquarters doesn&rsquo;t" "body" "The Handler keeps its own copy of every Brief it has received. If The Agency is unreachable, it serves the stored copy and your Agents never notice.")
+          (dict "icon" "refresh"  "title" "Repairs what gets mangled" "body" "If an Agent or a developer edits or deletes part of a Brief, the Handler restores it from the original on the next pass. The Brief itself never drifts.")
+        }}
+          <div class="flex items-start gap-4 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6">
+            {{ partial "hex-badge.html" (dict "name" .icon "size" "h-11 w-11" "icon" "h-5 w-5" "surface" $onCard) }}
+            <div>
+              <h4 class="text-base font-semibold text-slate-900 dark:text-white">{{ .title | safeHTML }}</h4>
+              <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">{{ .body | safeHTML }}</p>
+            </div>
           </div>
-        </div>
-        <div class="flex items-start gap-4 rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
-          <span class="mt-0.5 shrink-0 text-accent-700 dark:text-accent-400">
-            {{ partial "icon.html" (dict "name" "refresh" "class" "h-6 w-6") }}
-          </span>
-          <div>
-            <h4 class="text-base font-semibold text-slate-900 dark:text-white">Repairs what gets mangled</h4>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
-              If an Agent or a developer edits or deletes part of a Brief, the Handler restores it
-              from the original on the next pass. The Brief itself never drifts.
-            </p>
-          </div>
-        </div>
+        {{ end }}
       </div>
     </div>
   </section>
 
   <!-- Locations -->
-  <section class="border-b border-slate-200 dark:border-navy-800">
+  <section class="border-b border-slate-200 dark:border-slate-800">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
       <div class="flex items-center gap-4">
-        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
-          {{ partial "icon.html" (dict "name" "location" "class" "h-6 w-6") }}
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Locations</h2>
+        {{ partial "hex-badge.html" (dict "name" "location" "size" "h-14 w-14" "icon" "h-6 w-6" "surface" $onWhite) }}
+        <div>
+          <p class="dossier-label">File 03 &middot; On the ground</p>
+          <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Locations</h2>
+        </div>
       </div>
       <p class="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
         A Location is a directory on a developer&rsquo;s machine where an Agent runs a Mission &mdash; in
@@ -169,32 +145,30 @@
         which Organization it belongs to and which Mission Types apply there. The Handler sweeps the
         machine, finds the markers, and delivers.
       </p>
-      <div class="mt-8 rounded-2xl border border-accent-500/20 dark:border-accent-400/20 bg-accent-500/5 dark:bg-accent-400/10 p-6 sm:p-8">
-        <div class="flex items-start gap-4">
-          <span class="mt-0.5 shrink-0 text-accent-700 dark:text-accent-400">
-            {{ partial "icon.html" (dict "name" "branch" "class" "h-6 w-6") }}
-          </span>
-          <div>
-            <h3 class="text-base font-semibold text-slate-900 dark:text-white">The marker is source-controlled</h3>
-            <p class="mt-2 text-slate-600 dark:text-slate-400">
-              Commit it once and the Location is set up for everyone. A new developer clones the
-              repository, their Handler notices, and their Agents are briefed with zero effort on
-              their part.
-            </p>
-          </div>
+      <div class="mt-8 flex items-start gap-4 rounded-2xl border border-cyan-500/20 dark:border-cyan-400/20 bg-cyan-500/5 dark:bg-cyan-400/10 p-6 sm:p-8">
+        {{ partial "hex-badge.html" (dict "name" "branch" "size" "h-11 w-11" "icon" "h-5 w-5" "surface" $onWhite) }}
+        <div>
+          <h3 class="text-base font-semibold text-slate-900 dark:text-white">The marker is source-controlled</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">
+            Commit it once and the Location is set up for everyone. A new developer clones the
+            repository, their Handler notices, and their Agents are briefed with zero effort on
+            their part.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Mission Types -->
-  <section class="border-b border-slate-200 dark:border-navy-800 bg-slate-50 dark:bg-navy-900">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+  <section class="relative overflow-hidden border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
+    <div class="hex-lattice pointer-events-none absolute inset-0" aria-hidden="true"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
       <div class="flex items-center gap-4">
-        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
-          {{ partial "icon.html" (dict "name" "filter" "class" "h-6 w-6") }}
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Mission Types</h2>
+        {{ partial "hex-badge.html" (dict "name" "filter" "size" "h-14 w-14" "icon" "h-6 w-6" "surface" $onTint) }}
+        <div>
+          <p class="dossier-label">File 04 &middot; Need to know</p>
+          <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Mission Types</h2>
+        </div>
       </div>
       <p class="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
         Not everything in a Brief applies everywhere. Mission Types are simple tags &mdash; think
@@ -202,37 +176,71 @@
         <span class="font-medium text-slate-800 dark:text-slate-200">Library</span>,
         <span class="font-medium text-slate-800 dark:text-slate-200">Framework</span> &mdash; that your
         Organization puts on the files it authors. A Location declares the Mission Types it runs, and
-        only the matching material is delivered there. A Library project does not need your Web
-        rules, so it never sees them.
+        only the matching material is delivered there.
       </p>
-      <div class="mt-8 grid gap-6 sm:grid-cols-3">
-        <div class="rounded-xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
-          <p class="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">Location</p>
-          <p class="mt-2 font-semibold text-slate-900 dark:text-white">Web app</p>
-          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Receives the shared material plus everything tagged <span class="font-medium text-slate-800 dark:text-slate-200">Web</span>.</p>
+
+      <!-- Clearance matrix -->
+      <div class="mt-10 overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+        <div class="flex items-center gap-2 border-b border-slate-200 dark:border-slate-700 px-5 py-3">
+          <span class="h-2.5 w-2.5 rounded-full bg-cyan-400"></span>
+          <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Clearance matrix</p>
         </div>
-        <div class="rounded-xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
-          <p class="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">Location</p>
-          <p class="mt-2 font-semibold text-slate-900 dark:text-white">Shared library</p>
-          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Receives the shared material plus everything tagged <span class="font-medium text-slate-800 dark:text-slate-200">Library</span>.</p>
-        </div>
-        <div class="rounded-xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
-          <p class="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">Location</p>
-          <p class="mt-2 font-semibold text-slate-900 dark:text-white">No types declared</p>
-          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Accepts everything. Leave it blank when a Location should get the whole Brief.</p>
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[34rem] text-left text-sm">
+            <thead>
+              <tr class="border-b border-slate-200 dark:border-slate-700">
+                <th scope="col" class="px-5 py-3 font-semibold text-slate-900 dark:text-white">Material in the Brief</th>
+                <th scope="col" class="px-5 py-3 text-center font-semibold text-slate-900 dark:text-white">Web&nbsp;Location</th>
+                <th scope="col" class="px-5 py-3 text-center font-semibold text-slate-900 dark:text-white">Library&nbsp;Location</th>
+                <th scope="col" class="px-5 py-3 text-center font-semibold text-slate-900 dark:text-white">No types declared</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{ range slice
+                (dict "label" "Untagged"           "cells" (slice true true true))
+                (dict "label" "Tagged Web"         "cells" (slice true false true))
+                (dict "label" "Tagged Library"     "cells" (slice false true true))
+                (dict "label" "Tagged Web + Library" "cells" (slice true true true))
+              }}
+                <tr class="border-b border-slate-100 last:border-0 dark:border-slate-700/60">
+                  <th scope="row" class="px-5 py-3 font-mono text-xs font-medium text-slate-700 dark:text-slate-300">{{ .label }}</th>
+                  {{ range .cells }}
+                    <td class="px-5 py-3 text-center">
+                      {{ if . }}
+                        <span class="inline-flex items-center gap-1.5 text-cyan-700 dark:text-cyan-400">
+                          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                          <span class="sr-only">Delivered</span>
+                        </span>
+                      {{ else }}
+                        <span class="inline-flex items-center gap-1.5 text-slate-300 dark:text-slate-600">
+                          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                          <span class="sr-only">Withheld</span>
+                        </span>
+                      {{ end }}
+                    </td>
+                  {{ end }}
+                </tr>
+              {{ end }}
+            </tbody>
+          </table>
         </div>
       </div>
+      <p class="mt-4 text-sm text-slate-500 dark:text-slate-400">
+        Untagged material goes everywhere. Tagged material needs a Location that asked for it &mdash; or a
+        Location that asked for everything.
+      </p>
     </div>
   </section>
 
   <!-- Organizations and Teams -->
-  <section class="border-b border-slate-200 dark:border-navy-800">
+  <section class="border-b border-slate-200 dark:border-slate-800">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
       <div class="flex items-center gap-4">
-        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
-          {{ partial "icon.html" (dict "name" "team" "class" "h-6 w-6") }}
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Organizations and Teams</h2>
+        {{ partial "hex-badge.html" (dict "name" "team" "size" "h-14 w-14" "icon" "h-6 w-6" "surface" $onWhite) }}
+        <div>
+          <p class="dossier-label">File 05 &middot; Personnel</p>
+          <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Organizations and Teams</h2>
+        </div>
       </div>
       <p class="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
         An Organization is the entity that authors Briefs and controls how they are distributed.
@@ -247,13 +255,14 @@
   </section>
 
   <!-- Authoring -->
-  <section class="border-b border-slate-200 dark:border-navy-800 bg-slate-50 dark:bg-navy-900">
+  <section class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
       <div class="flex items-center gap-4">
-        <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
-          {{ partial "icon.html" (dict "name" "brief" "class" "h-6 w-6") }}
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Authoring a Brief</h2>
+        {{ partial "hex-badge.html" (dict "name" "brief" "size" "h-14 w-14" "icon" "h-6 w-6" "surface" $onTint) }}
+        <div>
+          <p class="dossier-label">File 06 &middot; Drafting orders</p>
+          <h2 class="mt-1 text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Authoring a Brief</h2>
+        </div>
       </div>
       <p class="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
         You write your skills, rules, and agent definitions the way you already write everything
@@ -261,41 +270,62 @@
         it takes over from there.
       </p>
 
+      <!-- Source to Brief -->
+      <div class="mt-10 overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+        <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-700 px-5 py-3">
+          <span class="font-mono text-sm font-bold text-cyan-700 dark:text-cyan-400">&gt;_</span>
+          <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Translation</p>
+        </div>
+        <div class="grid gap-px bg-slate-200 dark:bg-slate-700 sm:grid-cols-2">
+          <div class="bg-white dark:bg-slate-800 p-6">
+            <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">What you write</p>
+            <pre class="mt-3 overflow-x-auto font-mono text-sm leading-relaxed text-slate-700 dark:text-slate-300"><code>your-standards/
+├── skills/
+├── rules/
+└── agents/</code></pre>
+          </div>
+          <div class="bg-white dark:bg-slate-800 p-6">
+            <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-400">What lands in a Location</p>
+            <pre class="mt-3 overflow-x-auto font-mono text-sm leading-relaxed text-slate-700 dark:text-slate-300"><code>.claude/
+├── skills/
+├── rules/
+└── commands/
+.codex/
+└── ...</code></pre>
+          </div>
+        </div>
+      </div>
+
       <ol class="mt-10 space-y-6">
-        <li class="flex gap-5">
-          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-700 dark:bg-accent-400 text-sm font-bold text-white dark:text-navy-950">1</span>
-          <div>
-            <h3 class="text-base font-semibold text-slate-900 dark:text-white">Point at a repository</h3>
-            <p class="mt-1 text-slate-600 dark:text-slate-400">Connect a GitHub repository of skills, rules, and agent definitions. When it changes, The Agency picks the change up.</p>
-          </div>
-        </li>
-        <li class="flex gap-5">
-          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-700 dark:bg-accent-400 text-sm font-bold text-white dark:text-navy-950">2</span>
-          <div>
-            <h3 class="text-base font-semibold text-slate-900 dark:text-white">The Agency builds the Brief</h3>
-            <p class="mt-1 text-slate-600 dark:text-slate-400">Your source is assembled into a single Brief and given a new version. Nothing downstream has to be told.</p>
-          </div>
-        </li>
-        <li class="flex gap-5">
-          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent-700 dark:bg-accent-400 text-sm font-bold text-white dark:text-navy-950">3</span>
-          <div>
-            <h3 class="text-base font-semibold text-slate-900 dark:text-white">Translated for every agent</h3>
-            <p class="mt-1 text-slate-600 dark:text-slate-400">The same material is laid out the way each agent expects to find it &mdash; <code class="rounded bg-slate-200/70 dark:bg-navy-950/60 px-1.5 py-0.5 text-sm">.claude/</code>, <code class="rounded bg-slate-200/70 dark:bg-navy-950/60 px-1.5 py-0.5 text-sm">.codex/</code>, and so on &mdash; with per-agent escape hatches for the times you need something specific.</p>
-          </div>
-        </li>
+        {{ range $i, $step := slice
+          (dict "title" "Point at a repository" "body" "Connect a GitHub repository of skills, rules, and agent definitions. When it changes, The Agency picks the change up.")
+          (dict "title" "The Agency builds the Brief" "body" "Your source is assembled into a single Brief and given a new version. Nothing downstream has to be told.")
+          (dict "title" "Translated for every agent" "body" "The same material is laid out the way each agent expects to find it, with per-agent escape hatches for the times you need something specific.")
+        }}
+          <li class="flex gap-5">
+            <span class="hex flex h-10 w-10 shrink-0 items-center justify-center bg-cyan-700 text-sm font-bold text-white dark:bg-cyan-400 dark:text-slate-950">
+              {{ add $i 1 }}
+            </span>
+            <div>
+              <h3 class="text-base font-semibold text-slate-900 dark:text-white">{{ $step.title }}</h3>
+              <p class="mt-1 text-slate-600 dark:text-slate-400">{{ $step.body }}</p>
+            </div>
+          </li>
+        {{ end }}
       </ol>
     </div>
   </section>
 
   <!-- CTA -->
-  <section>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 rounded-2xl border border-accent-500/20 dark:border-accent-400/20 bg-accent-500/5 dark:bg-accent-400/10 p-8">
+  <section class="relative overflow-hidden">
+    <div class="hex-lattice pointer-events-none absolute inset-0" aria-hidden="true"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 rounded-2xl border border-cyan-500/20 dark:border-cyan-400/20 bg-cyan-500/5 dark:bg-cyan-400/10 p-8">
         <div>
           <h2 class="text-xl sm:text-2xl font-semibold text-slate-900 dark:text-white">Still learning the language?</h2>
           <p class="mt-2 text-slate-600 dark:text-slate-400">Agents, Handlers, Briefs, Locations, Missions &mdash; the whole lexicon in one place.</p>
         </div>
-        <a href="/concepts/" class="inline-flex items-center justify-center gap-2 shrink-0 px-6 py-3 bg-accent-700 hover:bg-accent-800 dark:bg-accent-500 dark:hover:bg-accent-400 dark:text-navy-950 text-white font-medium rounded-lg transition-colors">
+        <a href="/concepts/" class="inline-flex items-center justify-center gap-2 shrink-0 px-6 py-3 bg-cyan-700 hover:bg-cyan-800 dark:bg-cyan-500 dark:hover:bg-cyan-400 dark:text-slate-950 text-white font-medium rounded-lg transition-colors">
           Read the concepts
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
         </a>

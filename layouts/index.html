@@ -7,7 +7,7 @@
         <div class="flex justify-center mb-10">
           {{ partial "logo.html" (dict "class" "h-28 sm:h-40 lg:h-44 w-auto") }}
         </div>
-        <p class="inline-flex items-center gap-2 rounded-full border border-accent-500/30 dark:border-accent-400/30 bg-accent-500/10 dark:bg-accent-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent-700 dark:text-accent-300">
+        <p class="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 dark:border-cyan-400/30 bg-cyan-500/10 dark:bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-cyan-700 dark:text-cyan-300">
           Command and control for AI agents
         </p>
         <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white">
@@ -18,10 +18,10 @@
           {{ .Site.Params.description }}
         </p>
         <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <a href="/how-it-works/" class="px-6 py-3 bg-accent-700 hover:bg-accent-800 dark:bg-accent-500 dark:hover:bg-accent-400 dark:text-navy-950 text-white font-medium rounded-lg transition-colors">
+          <a href="/how-it-works/" class="px-6 py-3 bg-cyan-700 hover:bg-cyan-800 dark:bg-cyan-500 dark:hover:bg-cyan-400 dark:text-slate-950 text-white font-medium rounded-lg transition-colors">
             How it works
           </a>
-          <a href="{{ .Site.Params.github }}" class="px-6 py-3 border border-slate-300 dark:border-navy-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-navy-800 font-medium rounded-lg transition-colors" target="_blank" rel="noopener">
+          <a href="{{ .Site.Params.github }}" class="px-6 py-3 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium rounded-lg transition-colors" target="_blank" rel="noopener">
             GitHub
           </a>
         </div>
@@ -30,16 +30,16 @@
   </section>
 
   <!-- The problem -->
-  <section class="border-t border-slate-200 dark:border-navy-800 bg-slate-50 dark:bg-navy-900">
+  <section class="border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white text-center">The problem</h2>
-      <div class="mt-10 prose dark:prose-invert prose-slate max-w-none prose-a:text-accent-700 dark:prose-a:text-accent-400">
+      <div class="mt-10 prose dark:prose-invert prose-slate max-w-none prose-a:text-cyan-700 dark:prose-a:text-cyan-400">
         {{ .Content }}
       </div>
       <ul class="not-prose mt-8 grid gap-3 sm:grid-cols-2">
         {{ range slice "Rules everyone actually follows" "Skills your agents can reach for" "Coding standards that stick" "A project layout that stays put" "The frameworks and libraries you chose" "The same answer on every machine" }}
           <li class="flex items-start gap-3">
-            <svg class="w-5 h-5 mt-0.5 flex-none text-accent-700 dark:text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <svg class="w-5 h-5 mt-0.5 flex-none text-cyan-700 dark:text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
             <span class="text-slate-600 dark:text-slate-400">{{ . }}</span>
           </li>
         {{ end }}
@@ -49,7 +49,7 @@
   </section>
 
   <!-- How it works -->
-  <section class="border-t border-slate-200 dark:border-navy-800">
+  <section class="border-t border-slate-200 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       <div class="text-center max-w-2xl mx-auto">
         <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">How it works</h2>
@@ -61,9 +61,9 @@
 
       <ol class="mt-14 grid gap-6 lg:grid-cols-3 lg:gap-8">
         <!-- 1. The Agency -->
-        <li class="relative flex flex-col rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-900 p-6 sm:p-8">
-          <span class="absolute -top-3 left-6 sm:left-8 rounded-full bg-accent-700 dark:bg-accent-400 px-2.5 py-0.5 text-xs font-bold text-white dark:text-navy-950">01</span>
-          <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+        <li class="relative flex flex-col rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 sm:p-8">
+          <span class="absolute -top-3 left-6 sm:left-8 rounded-full bg-cyan-700 dark:bg-cyan-400 px-2.5 py-0.5 text-xs font-bold text-white dark:text-slate-950">01</span>
+          <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/10 dark:bg-cyan-400/10 text-cyan-700 dark:text-cyan-400">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
           </span>
           <h3 class="mt-5 text-lg font-semibold text-slate-900 dark:text-white">The Agency</h3>
@@ -74,9 +74,9 @@
         </li>
 
         <!-- 2. Handler -->
-        <li class="relative flex flex-col rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-900 p-6 sm:p-8">
-          <span class="absolute -top-3 left-6 sm:left-8 rounded-full bg-accent-700 dark:bg-accent-400 px-2.5 py-0.5 text-xs font-bold text-white dark:text-navy-950">02</span>
-          <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+        <li class="relative flex flex-col rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 sm:p-8">
+          <span class="absolute -top-3 left-6 sm:left-8 rounded-full bg-cyan-700 dark:bg-cyan-400 px-2.5 py-0.5 text-xs font-bold text-white dark:text-slate-950">02</span>
+          <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/10 dark:bg-cyan-400/10 text-cyan-700 dark:text-cyan-400">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 000 12.728m12.728 0a9 9 0 000-12.728M8.464 8.464a5 5 0 000 7.072m7.072 0a5 5 0 000-7.072M13 12a1 1 0 11-2 0 1 1 0 012 0z"/></svg>
           </span>
           <h3 class="mt-5 text-lg font-semibold text-slate-900 dark:text-white">Handler</h3>
@@ -87,9 +87,9 @@
         </li>
 
         <!-- 3. Locations -->
-        <li class="relative flex flex-col rounded-2xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-900 p-6 sm:p-8">
-          <span class="absolute -top-3 left-6 sm:left-8 rounded-full bg-accent-700 dark:bg-accent-400 px-2.5 py-0.5 text-xs font-bold text-white dark:text-navy-950">03</span>
-          <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+        <li class="relative flex flex-col rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 sm:p-8">
+          <span class="absolute -top-3 left-6 sm:left-8 rounded-full bg-cyan-700 dark:bg-cyan-400 px-2.5 py-0.5 text-xs font-bold text-white dark:text-slate-950">03</span>
+          <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/10 dark:bg-cyan-400/10 text-cyan-700 dark:text-cyan-400">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
           </span>
           <h3 class="mt-5 text-lg font-semibold text-slate-900 dark:text-white">Locations</h3>
@@ -101,7 +101,7 @@
       </ol>
 
       <div class="mt-10 text-center">
-        <a href="/how-it-works/" class="group inline-flex items-center gap-2 text-accent-700 dark:text-accent-400 font-medium">
+        <a href="/how-it-works/" class="group inline-flex items-center gap-2 text-cyan-700 dark:text-cyan-400 font-medium">
           See the whole flow
           <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
         </a>
@@ -110,7 +110,7 @@
   </section>
 
   <!-- What's in a Brief -->
-  <section class="border-t border-slate-200 dark:border-navy-800 bg-slate-50 dark:bg-navy-900">
+  <section class="border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       <div class="text-center max-w-2xl mx-auto">
         <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">What&rsquo;s in a Brief</h2>
@@ -121,49 +121,49 @@
       </div>
 
       <dl class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="rounded-xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
+        <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6">
           <dt class="flex items-center gap-3 text-base font-semibold text-slate-900 dark:text-white">
-            <svg class="h-5 w-5 flex-none text-accent-700 dark:text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <svg class="h-5 w-5 flex-none text-cyan-700 dark:text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
             Instructions
           </dt>
           <dd class="mt-2 text-sm text-slate-600 dark:text-slate-400">The context every Agent should start with, before it writes a single line.</dd>
         </div>
 
-        <div class="rounded-xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
+        <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6">
           <dt class="flex items-center gap-3 text-base font-semibold text-slate-900 dark:text-white">
-            <svg class="h-5 w-5 flex-none text-accent-700 dark:text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            <svg class="h-5 w-5 flex-none text-cyan-700 dark:text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
             Skills
           </dt>
           <dd class="mt-2 text-sm text-slate-600 dark:text-slate-400">Reusable capabilities your Agents can reach for, with the scripts and references they need.</dd>
         </div>
 
-        <div class="rounded-xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
+        <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6">
           <dt class="flex items-center gap-3 text-base font-semibold text-slate-900 dark:text-white">
-            <svg class="h-5 w-5 flex-none text-accent-700 dark:text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <svg class="h-5 w-5 flex-none text-cyan-700 dark:text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
             Rules
           </dt>
           <dd class="mt-2 text-sm text-slate-600 dark:text-slate-400">Coding standards, review expectations, and the lines your Agents do not cross.</dd>
         </div>
 
-        <div class="rounded-xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
+        <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6">
           <dt class="flex items-center gap-3 text-base font-semibold text-slate-900 dark:text-white">
-            <svg class="h-5 w-5 flex-none text-accent-700 dark:text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+            <svg class="h-5 w-5 flex-none text-cyan-700 dark:text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
             Directives
           </dt>
           <dd class="mt-2 text-sm text-slate-600 dark:text-slate-400">Standing orders from your Organization &mdash; how work gets done, not just what gets built.</dd>
         </div>
 
-        <div class="rounded-xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
+        <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6">
           <dt class="flex items-center gap-3 text-base font-semibold text-slate-900 dark:text-white">
-            <svg class="h-5 w-5 flex-none text-accent-700 dark:text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <svg class="h-5 w-5 flex-none text-cyan-700 dark:text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
             Commands
           </dt>
           <dd class="mt-2 text-sm text-slate-600 dark:text-slate-400">The shortcuts your team already uses, available in every repository from day one.</dd>
         </div>
 
-        <div class="rounded-xl border border-slate-200 dark:border-navy-700 bg-white dark:bg-navy-800 p-6">
+        <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-6">
           <dt class="flex items-center gap-3 text-base font-semibold text-slate-900 dark:text-white">
-            <svg class="h-5 w-5 flex-none text-accent-700 dark:text-accent-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <svg class="h-5 w-5 flex-none text-cyan-700 dark:text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
             Assets
           </dt>
           <dd class="mt-2 text-sm text-slate-600 dark:text-slate-400">Templates, snippets, images &mdash; the supporting material a Mission depends on.</dd>
@@ -173,13 +173,13 @@
   </section>
 
   <!-- Feature grid -->
-  <section class="border-t border-slate-200 dark:border-navy-800">
+  <section class="border-t border-slate-200 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white text-center">Control, without the babysitting</h2>
 
       <div class="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
         <div>
-          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/10 dark:bg-cyan-400/10 text-cyan-700 dark:text-cyan-400">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
           </span>
           <h3 class="mt-4 text-base font-semibold text-slate-900 dark:text-white">One set of rules, everywhere</h3>
@@ -190,7 +190,7 @@
         </div>
 
         <div>
-          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/10 dark:bg-cyan-400/10 text-cyan-700 dark:text-cyan-400">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
           </span>
           <h3 class="mt-4 text-base font-semibold text-slate-900 dark:text-white">Works with the agents you use</h3>
@@ -201,7 +201,7 @@
         </div>
 
         <div>
-          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/10 dark:bg-cyan-400/10 text-cyan-700 dark:text-cyan-400">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
           </span>
           <h3 class="mt-4 text-base font-semibold text-slate-900 dark:text-white">Files stay fresh</h3>
@@ -212,7 +212,7 @@
         </div>
 
         <div>
-          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/10 dark:bg-cyan-400/10 text-cyan-700 dark:text-cyan-400">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
           </span>
           <h3 class="mt-4 text-base font-semibold text-slate-900 dark:text-white">Scoped delivery</h3>
@@ -223,7 +223,7 @@
         </div>
 
         <div>
-          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/10 dark:bg-cyan-400/10 text-cyan-700 dark:text-cyan-400">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
           </span>
           <h3 class="mt-4 text-base font-semibold text-slate-900 dark:text-white">Managed centrally</h3>
@@ -234,7 +234,7 @@
         </div>
 
         <div>
-          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent-500/10 dark:bg-accent-400/10 text-accent-700 dark:text-accent-400">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/10 dark:bg-cyan-400/10 text-cyan-700 dark:text-cyan-400">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </span>
           <h3 class="mt-4 text-base font-semibold text-slate-900 dark:text-white">Zero-effort onboarding</h3>
@@ -248,14 +248,14 @@
   </section>
 
   <!-- Closing CTA -->
-  <section class="border-t border-slate-200 dark:border-navy-800">
+  <section class="border-t border-slate-200 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 rounded-2xl border border-accent-500/20 dark:border-accent-400/20 bg-accent-500/5 dark:bg-accent-400/10 p-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 rounded-2xl border border-cyan-500/20 dark:border-cyan-400/20 bg-cyan-500/5 dark:bg-cyan-400/10 p-8">
         <div>
           <h2 class="text-xl sm:text-2xl font-semibold text-slate-900 dark:text-white">The Agency is open source.</h2>
           <p class="mt-2 text-slate-600 dark:text-slate-400">Read the code, follow along, or come help build it.</p>
         </div>
-        <a href="{{ .Site.Params.github }}" class="inline-flex items-center justify-center gap-2 shrink-0 px-6 py-3 bg-accent-700 hover:bg-accent-800 dark:bg-accent-500 dark:hover:bg-accent-400 dark:text-navy-950 text-white font-medium rounded-lg transition-colors" target="_blank" rel="noopener">
+        <a href="{{ .Site.Params.github }}" class="inline-flex items-center justify-center gap-2 shrink-0 px-6 py-3 bg-cyan-700 hover:bg-cyan-800 dark:bg-cyan-500 dark:hover:bg-cyan-400 dark:text-slate-950 text-white font-medium rounded-lg transition-colors" target="_blank" rel="noopener">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.97.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.03 11.03 0 015.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.27 5.67.41.36.78 1.07.78 2.16v3.2c0 .31.21.68.8.56A11.51 11.51 0 0023.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
           View on GitHub
         </a>
