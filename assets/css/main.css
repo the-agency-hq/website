@@ -31,7 +31,7 @@
 
 /* Honeycomb lattice — the same texture used on the social cards */
 .hex-lattice {
-  background-image: url('/images/hex-lattice-light.svg');
+  background-image: url('../images/hex-lattice-light.svg');
   background-size: 41.57px 72px;
   opacity: 0.06;
   mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 30%, transparent 100%);
@@ -39,7 +39,7 @@
 }
 
 :is(.dark) .hex-lattice {
-  background-image: url('/images/hex-lattice-dark.svg');
+  background-image: url('../images/hex-lattice-dark.svg');
   opacity: 0.1;
 }
 
