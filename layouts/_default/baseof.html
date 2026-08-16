@@ -23,14 +23,8 @@
   <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
   <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   <meta name="twitter:image" content="{{ strings.TrimPrefix "/" $ogImage | absURL }}">
-  <script>
-    (function() {
-      var pref = localStorage.getItem('theme');
-      if (pref === 'dark' || (!pref && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-      }
-    })();
-  </script>
+  {{/* Loaded without defer so the theme applies before first paint. */}}
+  <script src="{{ "js/theme-0.1.0.js" | relURL }}"></script>
   {{ with (templates.Defer (dict "key" "global")) }}
     {{ partial "css.html" . }}
   {{ end }}
@@ -42,57 +36,5 @@
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}
-  <script>
-  (function() {
-    function getStoredTheme() {
-      return localStorage.getItem('theme');
-    }
-
-    function applyTheme(pref) {
-      var isDark = pref === 'dark' || (!pref && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      document.documentElement.classList.toggle('dark', isDark);
-    }
-
-    function updateIcons(pref) {
-      document.querySelectorAll('.theme-icon-light, .theme-icon-dark, .theme-icon-system').forEach(function(el) {
-        el.classList.add('hidden');
-      });
-      var cls = pref === 'light' ? '.theme-icon-light' : pref === 'dark' ? '.theme-icon-dark' : '.theme-icon-system';
-      document.querySelectorAll(cls).forEach(function(el) {
-        el.classList.remove('hidden');
-      });
-    }
-
-    function init() {
-      var pref = getStoredTheme();
-      applyTheme(pref);
-      updateIcons(pref);
-    }
-
-    document.querySelectorAll('.theme-toggle').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var current = getStoredTheme();
-        var next;
-        if (current === 'light') next = 'dark';
-        else if (current === 'dark') next = null;
-        else next = 'light';
-
-        if (next) {
-          localStorage.setItem('theme', next);
-        } else {
-          localStorage.removeItem('theme');
-        }
-        applyTheme(next);
-        updateIcons(next);
-      });
-    });
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
-      if (!getStoredTheme()) applyTheme(null);
-    });
-
-    init();
-  })();
-  </script>
 </body>
 </html>
