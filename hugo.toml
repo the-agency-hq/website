@@ -51,3 +51,15 @@ title = "The Agency"
   name = "Getting started"
   pageRef = "/getting-started"
   weight = 30
+
+[[menus.main]]
+  name = "Download"
+  url = "https://github.com/the-agency-hq/handler/releases"
+  weight = 40
+  [menus.main.params]
+    external = true
+
+[[menus.main]]
+  name = "Login"
+  url = "https://app.theagencyhq.dev"
+  weight = 50

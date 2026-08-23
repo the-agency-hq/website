@@ -12,7 +12,7 @@
           <h2 class="text-sm font-semibold text-slate-900 dark:text-white">Site</h2>
           <ul class="mt-3 space-y-2">
             {{ range .Site.Menus.main }}
-              <li><a href="{{ .URL }}" class="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">{{ .Name }}</a></li>
+              <li><a href="{{ .URL }}" class="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"{{ if .Params.external }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a></li>
             {{ end }}
           </ul>
         </div>

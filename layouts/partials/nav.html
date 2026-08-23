@@ -9,7 +9,7 @@
       <!-- Desktop nav -->
       <div class="hidden md:flex items-center gap-6">
         {{ range .Site.Menus.main }}
-          <a href="{{ .URL }}" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">{{ .Name }}</a>
+          <a href="{{ .URL }}" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"{{ if .Params.external }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a>
         {{ end }}
 
         <a href="{{ .Site.Params.github }}" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors" target="_blank" rel="noopener">GitHub</a>
@@ -31,7 +31,7 @@
   <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
     <div class="px-4 py-3 space-y-1">
       {{ range .Site.Menus.main }}
-        <a href="{{ .URL }}" class="block px-2 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded">{{ .Name }}</a>
+        <a href="{{ .URL }}" class="block px-2 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded"{{ if .Params.external }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a>
       {{ end }}
       <div class="border-t border-slate-200 dark:border-slate-800 pt-2 mt-2">
         <a href="{{ .Site.Params.github }}" class="block px-2 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded" target="_blank" rel="noopener">GitHub</a>
