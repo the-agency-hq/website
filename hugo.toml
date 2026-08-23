@@ -2,6 +2,10 @@ baseURL = "https://theagencyhq.org/"
 locale = "en-us"
 title = "The Agency"
 
+[security]
+  [security.exec]
+    allow = ['^(dart-)?sass$', '^go$', '^git$', '^node$', '^postcss$', '^tailwindcss$']
+
 [build]
   [build.buildStats]
     enable = true
@@ -42,3 +46,8 @@ title = "The Agency"
   name = "Concepts"
   pageRef = "/concepts"
   weight = 20
+
+[[menus.main]]
+  name = "Getting started"
+  pageRef = "/getting-started"
+  weight = 30
