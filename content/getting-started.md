@@ -120,10 +120,15 @@ The Agency validates the settings file, builds the first Brief version, and from
 
 ## 8. Install the Handler
 
-Download the Handler from the [releases page](https://github.com/the-agency-hq/handler/releases). It installs per-user — no root or admin required.
+One command on macOS or Linux:
 
-- **macOS:** open the `.pkg` for your architecture (`…-macos-arm64.pkg` or `…-macos-amd64.pkg`). It installs the `handler` CLI at `~/.local/bin/handler` and starts the Handler daemon and menu-bar app automatically.
-- **Linux:** extract the `.tar.gz` for your architecture and run `./install.sh` inside it. It installs the CLI at `~/.local/bin/handler` and runs the daemon as a systemd user service (systemd is required).
+```bash
+curl -fsSL https://theagencyhq.org/handler/install | bash
+```
+
+The script downloads the latest release for your platform, verifies its SHA-256 checksum, and runs the platform installer — the signed `.pkg` on macOS, the bundled `install.sh` on Linux (systemd required). Everything installs per-user, no sudo: the `handler` CLI lands at `~/.local/bin/handler` and the Handler daemon and tray app start automatically.
+
+Re-running the command upgrades in place.
 
 Make sure `~/.local/bin` is on your `PATH`.
 
@@ -158,7 +163,7 @@ It writes a single marker file, `agent-location.json`:
 {
   "version": "1.0.0",
   "organizationId": "8d9d1270-6237-4e78-b1b2-05ca9be78d8f",
-  "missionTypes": ["java", "cli"]
+  "missionTypes": ["java", "daemon"]
 }
 ```
 
