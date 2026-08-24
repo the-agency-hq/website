@@ -124,7 +124,45 @@
    Dashed routes move like .flow-x; the stage cards under the map light up on
    the same 12s clock as the SVG's SMIL timeline (four 3s stages). The cards
    only animate once JS adds .is-live, which it does in the same tick it
-   rewinds the SVG so the two clocks line up. */
+   rewinds the SVG so the two clocks line up.
+
+   Anything inside a <symbol> or <marker> is rendered in a <use> shadow tree,
+   where Chromium cannot match the `.dark *` ancestor selector behind dark:
+   utilities (Safari matches it only sometimes). So the theme colours are
+   custom properties on the <svg> root — those inherit across the boundary —
+   and symbol contents use the .rm-* classes below instead of dark: classes. */
+#route-map {
+  --rm-surface: var(--color-white);
+  --rm-accent: var(--color-cyan-700);
+  --rm-route: color-mix(in srgb, var(--color-cyan-600) 70%, transparent);
+}
+
+:is(.dark) #route-map {
+  --rm-surface: var(--color-slate-800);
+  --rm-accent: var(--color-cyan-400);
+  --rm-route: color-mix(in srgb, var(--color-cyan-400) 60%, transparent);
+}
+
+.rm-surface {
+  fill: var(--rm-surface);
+}
+
+.rm-accent-fill {
+  fill: var(--rm-accent);
+}
+
+.rm-accent-stroke {
+  stroke: var(--rm-accent);
+}
+
+.rm-accent-ink {
+  color: var(--rm-accent);
+}
+
+.rm-route {
+  stroke: var(--rm-route);
+}
+
 .route-path {
   stroke-dasharray: 6 8;
   animation: route-dash 1.1s linear infinite;

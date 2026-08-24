@@ -33,14 +33,14 @@
     </linearGradient>
 
     <marker id="rm-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-      <path d="M1.5 1.5L7.5 5L1.5 8.5" class="fill-none stroke-cyan-600/70 dark:stroke-cyan-400/60" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M1.5 1.5L7.5 5L1.5 8.5" class="fill-none rm-route" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
 
     <!-- A Brief: the paper that travels the route -->
     <symbol id="rm-doc" viewBox="0 0 22 28">
-      <path d="M3 .75h10.5l7 7v17.5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V2.75a2 2 0 0 1 2-2z" class="fill-white dark:fill-slate-800 stroke-cyan-700 dark:stroke-cyan-400" stroke-width="1.5" stroke-linejoin="round"/>
-      <path d="M13.5 .75v7h7" class="fill-none stroke-cyan-700 dark:stroke-cyan-400" stroke-width="1.5" stroke-linejoin="round"/>
-      <path d="M6 13.5h10M6 17.5h10M6 21.5h6" class="stroke-cyan-700/70 dark:stroke-cyan-400/70" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M3 .75h10.5l7 7v17.5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V2.75a2 2 0 0 1 2-2z" class="rm-surface rm-accent-stroke" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M13.5 .75v7h7" class="fill-none rm-accent-stroke" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M6 13.5h10M6 17.5h10M6 21.5h6" class="rm-accent-stroke" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round"/>
     </symbol>
 
     <!-- Heroicons-style strokes, same paths as partials/icon.html -->
@@ -52,19 +52,19 @@
     <!-- Hex badge, same construction as partials/hex-badge.html -->
     <symbol id="rm-badge" viewBox="0 0 48 48">
       <polygon points="24,0 44.8,12 44.8,36 24,48 3.2,36 3.2,12" fill="url(#rm-hex-grad)"/>
-      <polygon points="24,3 42.2,13.5 42.2,34.5 24,45 5.8,34.5 5.8,13.5" class="fill-white dark:fill-slate-800"/>
-      <polygon points="24,3 42.2,13.5 42.2,34.5 24,45 5.8,34.5 5.8,13.5" class="fill-cyan-500/10 dark:fill-cyan-400/10"/>
+      <polygon points="24,3 42.2,13.5 42.2,34.5 24,45 5.8,34.5 5.8,13.5" class="rm-surface"/>
+      <polygon points="24,3 42.2,13.5 42.2,34.5 24,45 5.8,34.5 5.8,13.5" class="rm-accent-fill" fill-opacity="0.1"/>
     </symbol>
     {{ range slice "agency" "handler" "agent" }}
       <symbol id="rm-badge-{{ . }}" viewBox="0 0 48 48">
         <use href="#rm-badge" width="48" height="48"/>
-        <use href="#rm-i-{{ . }}" x="12" y="12" width="24" height="24" class="text-cyan-700 dark:text-cyan-400"/>
+        <use href="#rm-i-{{ . }}" x="12" y="12" width="24" height="24" class="rm-accent-ink"/>
       </symbol>
     {{ end }}
 
     <!-- Stage number -->
     <symbol id="rm-num" viewBox="0 0 24 24">
-      <polygon points="12,0 22.4,6 22.4,18 12,24 1.6,18 1.6,6" class="fill-cyan-700 dark:fill-cyan-400"/>
+      <polygon points="12,0 22.4,6 22.4,18 12,24 1.6,18 1.6,6" class="rm-accent-fill"/>
     </symbol>
   </defs>
 
