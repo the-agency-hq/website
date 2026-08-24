@@ -1,0 +1,198 @@
+{{- /*
+  Operations map: an animated SVG that follows one Brief from a GitHub
+  repository, into The Agency, out to the Handler on every developer machine,
+  into each Location, and finally to the Agents that run Missions there.
+
+  Timing is one 12s SMIL cycle split into four 3s stages. The stage cards under
+  the map (see how-it-works.html) use CSS animations on the same 12s clock:
+
+    stage 1  0–3s   pull:    GitHub → The Agency, stored in the vault
+    stage 2  3–6s   sync:    The Agency → every Handler
+    stage 3  6–9s   deliver: Handler → every Location on the machine
+    stage 4  9–12s  mission: Agents read the Brief and work
+
+  All keyTimes below are fractions of the 12s cycle.
+*/ -}}
+{{- $machines := slice
+  (dict "x" 20  "label" "Developer machine 01" "locs" (slice "~/dev/api"   "~/dev/web"))
+  (dict "x" 350 "label" "Developer machine 02" "locs" (slice "~/code/app"  "~/code/sdk"))
+  (dict "x" 680 "label" "Developer machine 03" "locs" (slice "~/src/site"  "~/src/cli"))
+-}}
+{{- $line := "route-path fill-none stroke-cyan-600/70 dark:stroke-cyan-400/60" -}}
+{{- $card := "fill-white dark:fill-slate-800 stroke-slate-200 dark:stroke-slate-700" -}}
+{{- $ink := "fill-slate-900 dark:fill-white" -}}
+{{- $muted := "fill-slate-500 dark:fill-slate-400" -}}
+<svg id="route-map" class="block h-auto w-full" viewBox="0 0 1000 550" role="img" aria-labelledby="route-map-title route-map-desc">
+  <title id="route-map-title">How a Brief travels from a GitHub repository to every Agent</title>
+  <desc id="route-map-desc">The Agency pulls a Brief from a GitHub repository and stores it. A Handler on each developer machine downloads the Brief and copies it into every Location on that machine. Agents in each Location read the Brief while running their Missions.</desc>
+
+  <defs>
+    <linearGradient id="rm-hex-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#1e40af"/>
+    </linearGradient>
+
+    <marker id="rm-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M1.5 1.5L7.5 5L1.5 8.5" class="fill-none stroke-cyan-600/70 dark:stroke-cyan-400/60" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+
+    <!-- A Brief: the paper that travels the route -->
+    <symbol id="rm-doc" viewBox="0 0 22 28">
+      <path d="M3 .75h10.5l7 7v17.5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V2.75a2 2 0 0 1 2-2z" class="fill-white dark:fill-slate-800 stroke-cyan-700 dark:stroke-cyan-400" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M13.5 .75v7h7" class="fill-none stroke-cyan-700 dark:stroke-cyan-400" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M6 13.5h10M6 17.5h10M6 21.5h6" class="stroke-cyan-700/70 dark:stroke-cyan-400/70" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Heroicons-style strokes, same paths as partials/icon.html -->
+    <symbol id="rm-i-agency" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></symbol>
+    <symbol id="rm-i-handler" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 000 12.728m12.728 0a9 9 0 000-12.728M8.464 8.464a5 5 0 000 7.072m7.072 0a5 5 0 000-7.072M13 12a1 1 0 11-2 0 1 1 0 012 0z"/></symbol>
+    <symbol id="rm-i-agent" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></symbol>
+    <symbol id="rm-i-folder" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></symbol>
+
+    <!-- Hex badge, same construction as partials/hex-badge.html -->
+    <symbol id="rm-badge" viewBox="0 0 48 48">
+      <polygon points="24,0 44.8,12 44.8,36 24,48 3.2,36 3.2,12" fill="url(#rm-hex-grad)"/>
+      <polygon points="24,3 42.2,13.5 42.2,34.5 24,45 5.8,34.5 5.8,13.5" class="fill-white dark:fill-slate-800"/>
+      <polygon points="24,3 42.2,13.5 42.2,34.5 24,45 5.8,34.5 5.8,13.5" class="fill-cyan-500/10 dark:fill-cyan-400/10"/>
+    </symbol>
+    {{ range slice "agency" "handler" "agent" }}
+      <symbol id="rm-badge-{{ . }}" viewBox="0 0 48 48">
+        <use href="#rm-badge" width="48" height="48"/>
+        <use href="#rm-i-{{ . }}" x="12" y="12" width="24" height="24" class="text-cyan-700 dark:text-cyan-400"/>
+      </symbol>
+    {{ end }}
+
+    <!-- Stage number -->
+    <symbol id="rm-num" viewBox="0 0 24 24">
+      <polygon points="12,0 22.4,6 22.4,18 12,24 1.6,18 1.6,6" class="fill-cyan-700 dark:fill-cyan-400"/>
+    </symbol>
+  </defs>
+
+  {{/* ── Stage 1: GitHub repository → The Agency ───────────────────────── */}}
+  <g>
+    <rect x="60" y="50" width="220" height="80" rx="14" class="{{ $card }}"/>
+    <path transform="translate(80 74) scale(1.3333)" class="{{ $ink }}" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+    <text x="124" y="84" class="{{ $ink }} text-[14px] font-semibold">GitHub repository</text>
+    <text x="124" y="104" class="{{ $muted }} font-mono text-[10px]">skills · rules · agents</text>
+  </g>
+
+  <path d="M280 90H350" class="{{ $line }}" stroke-width="2" stroke-linecap="round" marker-end="url(#rm-arrow)"/>
+  <use href="#rm-num" x="304" y="55" width="22" height="22"/>
+  <text x="315" y="66.5" text-anchor="middle" dominant-baseline="central" class="fill-white dark:fill-slate-950 font-mono text-[10px] font-bold">01</text>
+
+  <g>
+    <rect x="350" y="40" width="300" height="100" rx="14" class="{{ $card }}"/>
+    <use href="#rm-badge-agency" x="368" y="66" width="48" height="48"/>
+    <text x="430" y="86" class="{{ $ink }} text-[15px] font-semibold">The Agency</text>
+    <text x="430" y="104" class="{{ $muted }} font-mono text-[10px]">Headquarters</text>
+
+    <!-- The vault: every version of the Brief, kept -->
+    <rect x="532" y="52" width="106" height="76" rx="8" class="fill-cyan-500/5 dark:fill-cyan-400/10 stroke-cyan-500/20 dark:stroke-cyan-400/20"/>
+    <rect x="532" y="52" width="106" height="76" rx="8" class="fill-none stroke-cyan-500 dark:stroke-cyan-400" stroke-width="1.5" opacity="0">
+      <animate attributeName="opacity" dur="12s" repeatCount="indefinite" values="0;0;0.9;0;0" keyTimes="0;0.19;0.215;0.27;1"/>
+    </rect>
+    <text x="585" y="66" text-anchor="middle" dominant-baseline="central" class="fill-cyan-700 dark:fill-cyan-400 font-mono text-[9px] font-semibold tracking-[0.18em]">STORED BRIEFS</text>
+    {{ range $i, $v := slice "v7" "v8" "v9" }}
+      <use href="#rm-doc" x="{{ add 542 (mul $i 23) }}" y="74" width="17" height="22"/>
+      <text x="{{ add 550.5 (mul $i 23) }}" y="112" text-anchor="middle" dominant-baseline="central" class="{{ $muted }} font-mono text-[9px]">{{ $v }}</text>
+    {{ end }}
+    <g opacity="0">
+      <use href="#rm-doc" x="611" y="74" width="17" height="22"/>
+      <text x="619.5" y="112" text-anchor="middle" dominant-baseline="central" class="fill-cyan-700 dark:fill-cyan-400 font-mono text-[9px] font-semibold">v10</text>
+      <animate attributeName="opacity" dur="12s" repeatCount="indefinite" values="0;0;1;1;0" keyTimes="0;0.19;0.215;0.975;1"/>
+      <animateTransform attributeName="transform" type="translate" dur="12s" repeatCount="indefinite" values="0 6;0 6;0 0;0 0" keyTimes="0;0.19;0.215;1"/>
+    </g>
+  </g>
+
+  {{/* ── Stage 2: The Agency → every Handler ───────────────────────────── */}}
+  {{ range $machines }}
+    <path d="M500 140V200H{{ add .x 150 }}V292" class="{{ $line }}" stroke-width="2" stroke-linecap="round" marker-end="url(#rm-arrow)"/>
+  {{ end }}
+  <use href="#rm-num" x="467" y="159" width="22" height="22"/>
+  <text x="478" y="170.5" text-anchor="middle" dominant-baseline="central" class="fill-white dark:fill-slate-950 font-mono text-[10px] font-bold">02</text>
+
+  {{/* ── Developer machines: Handler → Locations → Agents ───────────────── */}}
+  {{ range $m, $machine := $machines }}
+    <g transform="translate({{ $machine.x }} 250)">
+      <!-- laptop -->
+      <rect x="0" y="0" width="300" height="264" rx="14" class="fill-white/70 dark:fill-slate-800/50 stroke-slate-200 dark:stroke-slate-700"/>
+      <rect x="-8" y="264" width="316" height="18" rx="5" class="fill-slate-200 dark:fill-slate-700"/>
+      <text x="150" y="273" text-anchor="middle" dominant-baseline="central" class="fill-slate-600 dark:fill-slate-300 font-mono text-[9px] font-semibold uppercase tracking-[0.18em]">{{ $machine.label }}</text>
+      {{ range slice 18 30 42 }}
+        <circle cx="{{ . }}" cy="18" r="3.5" class="fill-slate-300 dark:fill-slate-600"/>
+      {{ end }}
+
+      <!-- Handler -->
+      <circle cx="150" cy="66" r="24" class="fill-none stroke-cyan-500 dark:stroke-cyan-400" stroke-width="2" opacity="0">
+        <animate attributeName="r" dur="12s" repeatCount="indefinite" values="24;24;46;46" keyTimes="0;0.435;0.5;1"/>
+        <animate attributeName="opacity" dur="12s" repeatCount="indefinite" values="0;0;0.7;0;0" keyTimes="0;0.435;0.44;0.5;1"/>
+      </circle>
+      <use href="#rm-badge-handler" x="126" y="42" width="48" height="48"/>
+      <text x="182" y="60" dominant-baseline="central" class="{{ $ink }} text-[12px] font-semibold">Handler</text>
+      <text x="182" y="76" dominant-baseline="central" class="{{ $muted }} font-mono text-[9px]">syncs on a schedule</text>
+
+      <!-- Stage 3: Handler → Locations -->
+      {{ range slice 76 224 }}
+        <path d="M150 90V124H{{ . }}V146" class="{{ $line }}" stroke-width="2" stroke-linecap="round" marker-end="url(#rm-arrow)"/>
+      {{ end }}
+      {{ if eq $m 0 }}
+        <use href="#rm-num" x="161" y="97" width="22" height="22"/>
+        <text x="172" y="108.5" text-anchor="middle" dominant-baseline="central" class="fill-white dark:fill-slate-950 font-mono text-[10px] font-bold">03</text>
+        <use href="#rm-num" x="139" y="188" width="22" height="22"/>
+        <text x="150" y="199.5" text-anchor="middle" dominant-baseline="central" class="fill-white dark:fill-slate-950 font-mono text-[10px] font-bold">04</text>
+      {{ end }}
+
+      <!-- Locations -->
+      {{ range $l, $loc := $machine.locs }}
+        <g transform="translate({{ index (slice 16 164) $l }} 146)">
+          <rect x="0" y="0" width="120" height="106" rx="10" class="{{ $card }}"/>
+          <use href="#rm-i-folder" x="10" y="9" width="14" height="14" class="text-slate-500 dark:text-slate-400"/>
+          <text x="29" y="16" dominant-baseline="central" class="fill-slate-700 dark:fill-slate-200 font-mono text-[10px]">{{ $loc }}</text>
+          <line x1="0" y1="27" x2="120" y2="27" class="stroke-slate-200 dark:stroke-slate-700"/>
+
+          <!-- the delivered Brief, lit once it lands -->
+          <use href="#rm-doc" x="14" y="34" width="22" height="28" opacity="0.2">
+            <animate attributeName="opacity" dur="12s" repeatCount="indefinite" values="0.2;0.2;1;1;0.2" keyTimes="0;0.665;0.69;0.975;1"/>
+          </use>
+          <text x="25" y="76" text-anchor="middle" dominant-baseline="central" class="{{ $muted }} font-mono text-[9px]">Brief</text>
+
+          <!-- Stage 4: the Agent reads the Brief -->
+          <path d="M40 48H60" class="route-path-fine fill-none stroke-cyan-600/70 dark:stroke-cyan-400/60" stroke-width="1.5" stroke-linecap="round" marker-end="url(#rm-arrow)" opacity="0">
+            <animate attributeName="opacity" dur="12s" repeatCount="indefinite" values="0;0;1;1;0" keyTimes="0;0.75;0.77;0.975;1"/>
+          </path>
+          <use href="#rm-badge-agent" x="68" y="32" width="36" height="36"/>
+          <text x="86" y="76" text-anchor="middle" dominant-baseline="central" class="{{ $muted }} font-mono text-[9px]">Agent</text>
+
+          <text x="14" y="94" dominant-baseline="central" class="fill-slate-500 dark:fill-slate-400 font-mono text-[8px] font-semibold tracking-[0.14em]">MISSION</text>
+          <rect x="58" y="92" width="48" height="4" rx="2" class="fill-slate-200 dark:fill-slate-700"/>
+          <rect x="58" y="92" width="0" height="4" rx="2" class="fill-cyan-600 dark:fill-cyan-400">
+            <animate attributeName="width" dur="12s" repeatCount="indefinite" values="0;0;48;48;0" keyTimes="0;0.775;0.94;0.975;1"/>
+          </rect>
+        </g>
+      {{ end }}
+
+      <!-- Stage 3 packets: one per Location; the card's Brief lights up as each one lands -->
+      {{ range slice 76 224 }}
+        <g class="route-packet" opacity="0">
+          <use href="#rm-doc" x="-11" y="-14" width="22" height="28"/>
+          <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.525;0.665;1" path="M150 90V124H{{ . }}V146"/>
+          <animate attributeName="opacity" dur="12s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.525;0.545;0.665;0.68;1"/>
+        </g>
+      {{ end }}
+    </g>
+  {{ end }}
+
+  {{/* ── Packets: drawn last so they ride above everything ─────────────── */}}
+  <g class="route-packet" opacity="0">
+    <use href="#rm-doc" x="-11" y="-14" width="22" height="28"/>
+    <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.03;0.18;1" path="M280 90H350"/>
+    <animate attributeName="opacity" dur="12s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.03;0.05;0.18;0.2;1"/>
+  </g>
+  {{ range $machines }}
+    <g class="route-packet" opacity="0">
+      <use href="#rm-doc" x="-11" y="-14" width="22" height="28"/>
+      <animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.275;0.435;1" path="M500 140V200H{{ add .x 150 }}V292"/>
+      <animate attributeName="opacity" dur="12s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.275;0.295;0.435;0.45;1"/>
+    </g>
+  {{ end }}
+</svg>

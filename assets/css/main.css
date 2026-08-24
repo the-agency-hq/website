@@ -119,3 +119,79 @@
 .copy-button.copied .icon-check {
   display: block;
 }
+
+/* ─── Operations map (how-it-works) ──────────────────────────────────────
+   Dashed routes move like .flow-x; the stage cards under the map light up on
+   the same 12s clock as the SVG's SMIL timeline (four 3s stages). The cards
+   only animate once JS adds .is-live, which it does in the same tick it
+   rewinds the SVG so the two clocks line up. */
+.route-path {
+  stroke-dasharray: 6 8;
+  animation: route-dash 1.1s linear infinite;
+}
+
+.route-path-fine {
+  stroke-dasharray: 3 4;
+  animation: route-dash-fine 1.1s linear infinite;
+}
+
+@keyframes route-dash {
+  to {
+    stroke-dashoffset: -14;
+  }
+}
+
+@keyframes route-dash-fine {
+  to {
+    stroke-dashoffset: -7;
+  }
+}
+
+.route-stage-bar {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.route-stage.is-live {
+  animation: route-stage-card 12s linear infinite;
+  animation-delay: var(--stage-delay, 0s);
+}
+
+.route-stage.is-live .route-stage-bar {
+  animation: route-stage-bar 12s linear infinite;
+  animation-delay: var(--stage-delay, 0s);
+}
+
+@keyframes route-stage-card {
+  0%, 24.99% {
+    box-shadow: inset 0 0 0 1px var(--color-cyan-500);
+  }
+  25%, 100% {
+    box-shadow: inset 0 0 0 1px transparent;
+  }
+}
+
+@keyframes route-stage-bar {
+  0% {
+    transform: scaleX(0);
+  }
+  25% {
+    transform: scaleX(1);
+  }
+  25.01%, 100% {
+    transform: scaleX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-path,
+  .route-path-fine,
+  .route-stage.is-live,
+  .route-stage.is-live .route-stage-bar {
+    animation: none;
+  }
+
+  .route-stage-bar {
+    transform: none;
+  }
+}
