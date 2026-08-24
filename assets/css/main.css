@@ -96,3 +96,26 @@
 :is(.dark) .grid-backdrop {
   --grid-line: color-mix(in srgb, var(--color-cyan-300) 8%, transparent);
 }
+
+/* Copy-to-clipboard button, appended by copy.js to elements with data-copy.
+   Styled for the dark code boxes where commands live, so it looks the same in both themes. */
+.copy-button {
+  @apply flex-none p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors;
+}
+
+.copy-button svg {
+  @apply w-5 h-5;
+}
+
+.copy-button .icon-check {
+  display: none;
+  @apply text-cyan-400;
+}
+
+.copy-button.copied .icon-copy {
+  display: none;
+}
+
+.copy-button.copied .icon-check {
+  display: block;
+}

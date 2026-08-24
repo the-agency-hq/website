@@ -25,6 +25,7 @@
   <meta name="twitter:image" content="{{ strings.TrimPrefix "/" $ogImage | absURL }}">
   {{/* Loaded without defer so the theme applies before first paint. */}}
   <script src="{{ "js/theme-0.1.0.js" | relURL }}"></script>
+  <script src="{{ "js/copy-0.1.0.js" | relURL }}" defer></script>
   {{ with (templates.Defer (dict "key" "global")) }}
     {{ partial "css.html" . }}
   {{ end }}

@@ -1,6 +1,6 @@
 # website
 
-The [theagencyhq.org](https://theagencyhq.org/) website.
+The [theagencyhq.dev](https://theagencyhq.dev/) website.
 
 Built with [Hugo](https://gohugo.io/) (extended) and [Tailwind CSS v4](https://tailwindcss.com/).
 

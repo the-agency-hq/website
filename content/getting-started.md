@@ -123,7 +123,7 @@ The Agency validates the settings file, builds the first Brief version, and from
 One command on macOS or Linux:
 
 ```bash
-curl -fsSL https://theagencyhq.org/handler/install | bash
+curl -fsSL https://theagencyhq.dev/handler/install | bash
 ```
 
 The script downloads the latest release for your platform, verifies its SHA-256 checksum, and runs the platform installer — the signed `.pkg` on macOS, the bundled `install.sh` on Linux (systemd required). Everything installs per-user, no sudo: the `handler` CLI lands at `~/.local/bin/handler` and the Handler daemon and tray app start automatically.

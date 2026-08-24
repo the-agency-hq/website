@@ -254,8 +254,10 @@
       <p class="mt-4 text-slate-600 dark:text-slate-400">
         To install the Handler daemon, run this command in your terminal:
       </p>
-      <div class="mt-8 rounded-xl bg-slate-950 ring-1 ring-slate-800 px-6 py-5 text-left overflow-x-auto">
-        <code class="font-mono text-sm sm:text-base text-cyan-300 whitespace-nowrap">curl -fsSL https://theagencyhq.org/handler/install | bash</code>
+      <div class="mt-8 flex items-center justify-between gap-3 rounded-xl bg-slate-950 ring-1 ring-slate-800 pl-6 pr-3 py-3 text-left" data-copy>
+        <div class="overflow-x-auto py-2">
+          <code class="font-mono text-sm sm:text-base text-cyan-300 whitespace-nowrap">curl -fsSL https://theagencyhq.dev/handler/install | bash</code>
+        </div>
       </div>
       <p class="mt-6 text-sm text-slate-500 dark:text-slate-400">
         Then follow the <a href="{{ "getting-started/" | relURL }}" class="text-cyan-700 dark:text-cyan-400 font-medium">getting started guide</a> to author your first Brief.

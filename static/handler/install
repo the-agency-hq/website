@@ -4,7 +4,7 @@
 #
 # Installs The Agency Handler on macOS or Linux:
 #
-#   curl -fsSL https://theagencyhq.org/handler/install | bash
+#   curl -fsSL https://theagencyhq.dev/handler/install | bash
 #
 # Finds the latest release through the GitHub API, downloads the artifact for
 # this platform, verifies it against the SHA-256 digest the API reports for the asset, then hands off to the
